@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-xl-2 col-lg-2 col-md-3 d-flex align-items-center">
           <div class="logo">
-            <a href="index.html"><img src="{{ asset('fontend/img/logo/logo2.png') }}" alt="" style="width: 100px; height: 100px;"/></a>
+            <a href="index.html"><img src="{{ asset('fontend/img/logo/logo2.png') }}" alt=""/></a>
           </div>
         </div>
         <div class="col-xl-10 col-lg-10 col-md-9" style="padding-top: 3%">

@@ -803,13 +803,10 @@ Welcome
                       <select class="calculater-select-bg">
                         <option>Play Package</option>
                         <option>Silver Package</option>
-                        <option>Master Package
-                        </option>
+                        <option>Master Package</option>
                         <option>Platinum Package</option>
-                        <option>Diamond Package
-                        </option>
-                        <option value="">Premium Package
-                        </option>
+                        <option>Diamond Package</option>
+                        <option value="">Premium Package</option>
                       </select>
                     </div>
                     <div class="col-lg-6 mb-30">
