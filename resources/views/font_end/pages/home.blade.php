@@ -205,152 +205,39 @@ Welcome
             </div>
           </div>
           <div class="row">
+            @foreach ($packages as $package )
             <div class="col-xl-3 col-lg-3 col-md-4">
+
+            
               <div class="pri_table_list text-center">
+
                 <div class="top-price-inner">
-                  <h3>Play Package </h3>
+                  <h3>{{ $package->package_name}}</h3>
                   <div class="rates">
-                    <span class="prices">3%</span>
+                    <!-- <span class="prices">3%</span> -->
                   </div>
                 </div>
                 <ol class="pricing-text">
-                  <li class="check">investment :100 TRX</li>
-                  <li class="check">Daily income : 3 TRX</li>
-                  <li class="check">Validity :( 90 days) </li>
+                  <li class="check">investment :{{ $package->invest }}</li>
+                  <li class="check">Daily income : {{ $package->daily_income}} TRX</li>
+                  <li class="check">Validity :{{ $package->validity }} </li>
                 </ol>
                 <div class="price-btn">
-                  <a class="blue" href="#">Invest Now</a>
+                  <a class="blue" href="{{ url('payment') }}/{{  $package->id}}">Invest Now</a>
                 </div>
               </div>
+                
+            
+
+
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-4">
-              <div class="pri_table_list text-center">
-                <div class="top-price-inner">
-                  <h3>Silver Package</h3>
-                  <div class="rates">
-                    <span class="prices">3% </span>
-                  </div>
-                </div>
-                <ol class="pricing-text">
-                  <li class="check">Minimam Invest : 200 TRX</li>
-                  <li class="check">Maximam Invest : 6 TRX</li>
-                  <li class="check">Validity: (90 days)</li>
-                </ol>
-                <div class="price-btn">
-                  <a class="blue" href="#">Invest Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4">
-              <div class="pri_table_list text-center">
-                <div class="top-price-inner">
-                  <h3>Gold Package</h3>
-                  <div class="rates">
-                    <span class="prices">3%</span
-                    >
-                  </div>
-                </div>
-                <ol class="pricing-text">
-                  <li class="check">investment: 600 TRX</li>
-                  <li class="check">Daily income: 18 TRX
-                  </li>
-                  <li class="check">Validity: (90 days)
-                  </li>
-                </ol>
-                <div class="price-btn">
-                  <a class="blue" href="#">Invest Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-4">
-              <div class="pri_table_list text-center">
-                <div class="top-price-inner">
-                  <h3>Master Package</h3>
-                  <div class="rates">
-                    <span class="prices">3.5%</span
-                    >
-                  </div>
-                </div>
-                <ol class="pricing-text">
-                  <li class="check">investment: 1000 TRX</li>
-                  <li class="check">Daily income: 35 TRX</li>
-                  <li class="check">Validity: ( 90 days)
-                  </li>
-                </ol>
-                <div class="price-btn">
-                  <a class="blue" href="#">Invest Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
-              <div class="pri_table_list text-center">
-                <div class="top-price-inner">
-                  <h3>Platinum Package
-                  </h3>
-                  <div class="rates">
-                    <span class="prices">3.5%</span
-                    >
-                  </div>
-                </div>
-                <ol class="pricing-text">
-                  <li class="check">investment: 2000 TRX</li>
-                  <li class="check">Daily income: 70 TRX</li>
-                  <li class="check">Validity: ( 180 days)
-                  </li>
-                </ol>
-                <div class="price-btn">
-                  <a class="blue" href="#">Invest Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
-              <div class="pri_table_list text-center">
-                <div class="top-price-inner">
-                  <h3>Diamond Package
-                  </h3>
-                  <div class="rates">
-                    <span class="prices">4%
-                      </span
-                    >
-                  </div>
-                </div>
-                <ol class="pricing-text">
-                  <li class="check">investment: 3000 TRX
-                  </li>
-                  <li class="check">Daily income: 120 TRX
-                  </li>
-                  <li class="check">Validity: (180 days)
-                  </li>
-                </ol>
-                <div class="price-btn">
-                  <a class="blue" href="#">Invest Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
-              <div class="pri_table_list text-center">
-                <div class="top-price-inner">
-                  <h3>Premium Package
-                  </h3>
-                  <div class="rates">
-                    <span class="prices">4%
-                      </span
-                    >
-                  </div>
-                </div>
-                <ol class="pricing-text">
-                  <li class="check">investment: 5000 TRX
-                  </li>
-                  <li class="check">Daily income: 200 TRX
-                  </li>
-                  <li class="check">Validity: (180 days)
-                  </li>
-                </ol>
-                <div class="price-btn">
-                  <a class="blue" href="#">Invest Now</a>
-                </div>
-              </div>
-            </div>
+            @endforeach
+         
+            
+     
+          
+            
+            
           </div>
         </div>
       </div>
