@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\Ad;
@@ -11,17 +10,78 @@ use Carbon\carbon;
 
 class adminController extends Controller
 {
+    //view Admin Login
  function adminLogin(){
      return view('admin.login');
  }
+
+ //view 
  function createpackage(){
      $packages=Package::all();
      return view('backend.pages.createpackage',compact('packages'));
  }
+//package page post Data
+ function Package(Request $request){
+
+    $request->validate([
+        'package_name'=>'required',
+        'revenue_percent'=>'required|numeric',
+        'invest'=>'required|numeric',
+        'daily_income'=>'required|numeric',
+        'validity'=>'required',
+    ],
+    [
+        'package_name.required'=>'Enter Package name',
+        'revenue_percent.required'=>'Enter Revenue Percent',
+        'invest.required'=>'Enter Investment',
+        'daily_income.required'=>'Enter Daily Income',
+        'validity.required'=>'Enter validity',
+
+    ]);
+
+     Package::Insert([
+       'package_name'=>$request->package_name,
+       'revenue_percent'=>$request->revenue_percent,
+       'invest'=>$request->invest,
+       'daily_income'=>$request->daily_income,
+       'validity'=>$request->validity
+     ]);
+     return Back();
+}
+
+
  function listpackage(){
      $packages=Package::all();
     return view('backend.pages.listpackage',compact('packages'));
 }
+
+//package Edit page view
+function PackageEditPage($package_id){
+    $old_package=Package::find($package_id);
+    return view('backend.pages.editpackage',compact('old_package'));
+}
+//package update
+function packageUpdate(Request $request){
+    Package::find($request->package_id)->update([
+        'package_name'=>$request->package_name,
+        'revenue_percent'=>$request->revenue_percent,
+        'invest'=>$request->invest,
+        'daily_income'=>$request->daily_income,
+        'validity'=>$request->validity
+    ]);
+    return back();
+}
+
+//Delete Package
+function packageDelete($package_id){
+    Package::find($package_id)->delete();
+    return back();
+}
+
+
+
+
+//Add page Function Start
 function createads(){
     return view('backend.pages.createads');
 }
@@ -30,52 +90,6 @@ function viewads(){
     return view('backend.pages.viewads',compact('ads'));
 }
 
-
-function manageads(){
-    $packages=Package::all();
-    $manages=ManageAd::all();
-    return view('backend.pages.manageads',compact('packages','manages'));
-}
-function manageAddelete($manage_id){
-    ManageAd::find($manage_id)->delete();
-    return back();
-}
-
-function  manageAdeditpage($manage_edit){
-
-    $packages=Package::all();
-   $old_manages= ManageAd::find($manage_edit);
-
-//    dd($old_manages->status);
-
-//    $message="Update successfully";
-    return view('backend.pages.manageAdedit',compact('packages','old_manages'))->with('message','Update successfully.');
-}
-
-function manageAdedit(Request $request){
-
-    // dd($request);
-    ManageAd::find($request->manage_id)->update([
-      'package_id'=>$request->package_id,
-      'ads_amount'=>$request->ads_amount,
-      'status'=>$request->status,
-    ]);
-    return back();
-
-}
-
-
-
-function manageadspost(Request $request){
-    $manage=new ManageAd;
-    $manage->package_id=$request->package_id;
-    $manage->ads_amount=$request->ads_amount;
-    $manage->status=$request->status;
-    if($manage->save()){
-    }
-//   dd($request->all());
-    return back();
-}
 
 
 function PostAds(Request $request){
@@ -148,11 +162,62 @@ function PostAds(Request $request){
 
      return back();
  }
+ 
+ //Delete Add
  function deleteads($delete_ads){
-     Ad::find($delete_ads)->delete();
-     return back();
- }
+    Ad::find($delete_ads)->delete();
+    return back();
+}
+ //Ads page Function End
 
+//Manage Ads page Function Start
+
+function manageads(){
+    $packages=Package::all();
+    $manages=ManageAd::all();
+    return view('backend.pages.manageads',compact('packages','manages'));
+}
+function manageAddelete($manage_id){
+    ManageAd::find($manage_id)->delete();
+    return back();
+}
+
+function  manageAdeditpage($manage_edit){
+
+    $packages=Package::all();
+   $old_manages= ManageAd::find($manage_edit);
+
+//    dd($old_manages->status);
+
+//    $message="Update successfully";
+    return view('backend.pages.manageAdedit',compact('packages','old_manages'))->with('message','Update successfully.');
+}
+
+function manageAdedit(Request $request){
+
+    // dd($request);
+    ManageAd::find($request->manage_id)->update([
+      'package_id'=>$request->package_id,
+      'ads_amount'=>$request->ads_amount,
+      'status'=>$request->status,
+    ]);
+    return back();
+
+}
+
+function manageadspost(Request $request){
+    $manage=new ManageAd;
+    $manage->package_id=$request->package_id;
+    $manage->ads_amount=$request->ads_amount;
+    $manage->status=$request->status;
+    if($manage->save()){
+    }
+//   dd($request->all());
+    return back();
+}
+//Manage Ads Page Function End
+
+//Investor Function Start
 function investor(){
     $investors=Payment::all();
     return view('backend.pages.investor',compact('investors'));
@@ -178,65 +243,29 @@ function admininvestor($id){
 function pandinginvestor(){
     return view('backend.pages.pandinginvestor');
 }
+
+//End Investor Function
+
+//view withdraw page
 function withdraw(){
     return view('backend.pages.withdraw');
 }
+
+//view Deposit page
 function deposit(){
     return view('backend.pages.deposit');
 }
+//view create user page
 function createuser(){
     return view('backend.pages.createuser');
 }
+//view Manage  user page 
 function manageuser(){
     return view('backend.pages.manageuser');
 }
+
+//view block user page
 function blockuser(){
     return view('backend.pages.blockuser');
-}
-// Start Post Method
-function Package(Request $request){
-
-    $request->validate([
-        'package_name'=>'required',
-        'revenue_percent'=>'required|numeric',
-        'invest'=>'required|numeric',
-        'daily_income'=>'required|numeric',
-        'validity'=>'required',
-    ],
-    [
-        'package_name.required'=>'Enter Package name',
-        'revenue_percent.required'=>'Enter Revenue Percent',
-        'invest.required'=>'Enter Investment',
-        'daily_income.required'=>'Enter Daily Income',
-        'validity.required'=>'Enter validity',
-
-    ]);
-
-     Package::Insert([
-       'package_name'=>$request->package_name,
-       'revenue_percent'=>$request->revenue_percent,
-       'invest'=>$request->invest,
-       'daily_income'=>$request->daily_income,
-       'validity'=>$request->validity
-     ]);
-     return Back();
-}
-function packageUpdate(Request $request){
-    Package::find($request->package_id)->update([
-        'package_name'=>$request->package_name,
-        'revenue_percent'=>$request->revenue_percent,
-        'invest'=>$request->invest,
-        'daily_income'=>$request->daily_income,
-        'validity'=>$request->validity
-    ]);
-    return back();
-}
-function PackageEditPage($package_id){
-    $old_package=Package::find($package_id);
-    return view('backend.pages.editpackage',compact('old_package'));
-}
-function packageDelete($package_id){
-    Package::find($package_id)->delete();
-    return back();
 }
 }

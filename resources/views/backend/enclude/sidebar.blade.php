@@ -7,10 +7,10 @@
             <span class="logo-text">Freedom Currency</span>
           </a>
           <!-- Menu: main ul -->
-         @if (Auth::User()->user_type==2)
+  
          <ul class="menu-list flex-grow-1 mt-3">
           <li>
-            <a class="m-link active" href="index.html"
+            <a class="m-link active" href="{{ url('/') }}"
               ><i class="icofont-home fs-5"></i> <span>Dashboard</span></a
             >
           </li>
@@ -149,7 +149,7 @@
           
         </ul>
            
-         @endif
+      
           <!-- Menu: menu collepce btn -->
           <button
             type="button"

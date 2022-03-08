@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
   <head>
@@ -31,6 +29,7 @@
                     <strong>{{ $message }}</strong>
                 </span>
                  @enderror
+
                 <input
                   type="email"
                   id="email"
@@ -61,6 +60,22 @@
                     <strong>{{ $message }}</strong>
                 </span>
                  @enderror
+
+                 <input
+                  type="text"
+                  class="form-control @error('code') is-invalid @enderror"
+                  placeholder="Your code Number"
+                  required
+                  name="code"
+                  data-error="Please enter your phone_number"
+                />
+                @error('code')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                 @enderror
+
+
                 <input
                   type="password"
                   id="msg_subject"
@@ -75,20 +90,6 @@
                     <strong>{{ $message }}</strong>
                 </span>
                  @enderror
-
-
-
-                 <select name="user_type" id=""  class="form-control @error('user_type') is-invalid @enderror"  style="background-color: green">  
-                  <option value="1"  >User</option>
-                 </select>
-                 @error('user_type')
-                 <span  class="invalid-feedback"  role="alert">
-                   <strong>{{ $message }}</strong>
-                 </span> 
-                 @enderror
-
-
-
                 <div class="check-group">
                   <div class="checkbox">
                     <label
@@ -100,35 +101,10 @@
                 <button type="submit"  class="slide-btn login-btn">
                   Sign up
                 </button>
-                <div id="msgSubmit" class="h3 text-center hidden"></div>
+           
                 <div class="clearfix"></div>
                 <div class="clear"></div>
-                <div class="separetor text-center">
-                  <span>Or with Signup</span>
-                </div>
-                <div class="sign-icon">
-                  <ul>
-                    <li>
-                      <a class="facebook" href="#"
-                        ><i class="ti-facebook"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a class="twitter" href="#"><i class="ti-twitter"></i></a>
-                    </li>
-                    <li>
-                      <a class="instagram" href="#"
-                        ><i class="ti-instagram"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a class="google" href="#"><i class="ti-google"></i></a>
-                    </li>
-                  </ul>
-                  <div class="acc-not">
-                    have an account? <a href="{{ url('login') }}">Login</a>
-                  </div>
-                </div>
+
               </form>
             </div>
           </div>

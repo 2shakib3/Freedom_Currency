@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -27,6 +29,15 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    
+    protected function redirectTo(){
+        if (Auth::User()->user_type == 1) {
+            return redirect('user/dashboard');
+        }
+        elseif (Auth::User()->user_type == 2){
+            return redirect('home');
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -37,6 +48,25 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function login(Request $request){
+        $input = $request->all();
+        $this->validate($request, [
+            'email' =>'required|email',
+            'password' =>'required',
+        ]);
+        if (auth()->attempt(array('email'=>$input['email'], 'password'=>$input['password'],))) {
+            if (Auth::User()->user_type == 1) {
+                return redirect('user/dashboard');
+            }
+            elseif (Auth::User()->user_type == 2){
+                return redirect('home');
+            }
+        }else{
+            return redirect()->route('login')->with('error', 'E-Mail and Password are Wrong');
+        }
+    }
+
     
     
 }
