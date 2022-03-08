@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-xl-2 col-lg-2 col-md-3 d-flex align-items-center">
           <div class="logo">
-            <a href="index.html"><img src="{{ asset('fontend/img/logo/logo2.png') }}" alt=""/></a>
+            <a href="{{url('/')}}"><img src="{{ asset('fontend/img/logo/logo2.png') }}" alt=""/></a>r\
           </div>
         </div>
         <div class="col-xl-10 col-lg-10 col-md-9" style="padding-top: 3%">
@@ -52,22 +52,22 @@
                 <li class="menu-item-has-children">
                   <a href="#">About us</a>
                   <ul class="submenu">
-                    <li><a href="about.html">About us</a></li>
-                    <li><a href="review.html">Reviews</a></li>
-                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="{{ url('/about') }}">About us</a></li>
+                    <li><a href="{{ url('/review')}}">Reviews</a></li>
+                    <li><a href="{{ url('/terms') }}">Terms & Conditions</a></li>
                   </ul>
                 </li>
-                <li><a href="user-panel.html">My Work</a></li>
-                <li><a href="plan.html">Investment</a></li>
-                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="{{ url('/work')}}">My Work</a></li>
+                <li><a href="{{ url('/invest') }}">Investment</a></li>
+                <li><a href="{{ url('/faq')}}">FAQ</a></li>
                 <li>
                   <a href="#">Blog</a>
                   <ul class="submenu">
-                    <li><a href="blog.html">Blog Grid</a></li>
-                    <li><a href="blog-details.html">Blog Details</a></li>
+                    <li><a href="{{ url('/blog')}}">Blog Grid</a></li>
+                    <li><a href="{{ url('/blog-details')}}">Blog Details</a></li>
                   </ul>
                 </li>
-                <li class="contact"><a href="contact.html">Contacts</a></li>
+                <li class="contact"><a href="{{url('/contact') }}">Contacts</a></li>
               </ul>
             </nav>
           </div>

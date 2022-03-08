@@ -50,8 +50,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:11','min:11'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
         ]);
@@ -65,11 +68,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-         $user=User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        $user= new User();
+        $user->name=$data['name'];
+        $user->email=$data['email'];
+        $user->phone_number=$data['phone_number'];
+        $user->password=Hash::make($data['password']);
+        $user->save();
+        // $user=User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'phone_number' => $data['phone_number'],
+        //     'password' => Hash::make($data['password']),
+        // ]);
         $date = \Carbon\Carbon::now();
         $dateforat = $date->format('d-m-Y');
         $account = new Account();

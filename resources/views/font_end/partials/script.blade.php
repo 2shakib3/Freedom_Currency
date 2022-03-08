@@ -26,3 +26,12 @@
     <script src="{{ asset('fontend/js/plugins.js') }}"></script>
     <!-- main js -->
     <script src="{{ asset('fontend/js/main.js') }}"></script>
+
+    <script>
+       $("document").ready(function(){
+            setTimeout(function(){
+       $(".message").remove();
+         }, 5000 ); // 5 secs
+
+   });
+    </script>
