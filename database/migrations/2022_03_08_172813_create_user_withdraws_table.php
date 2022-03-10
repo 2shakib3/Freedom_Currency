@@ -15,9 +15,13 @@ class CreateUserWithdrawsTable extends Migration
     {
         Schema::create('user_withdraws', function (Blueprint $table) {
             $table->id();
-            $table->integer('amount');
-            $table->integer('pay_number');
-            $table->string('pay_method');
+            $table->integer('trx_amount');
+            $table->integer('bdt_amount');
+            $table->bigInteger('pay_number');
+            $table->integer('pay_method');
+            $table->integer('vat_reducation');
+            $table->string('payable_amount');
+            $table->date('date_of_submit');
             $table->string('status')->default('Request For Withdraw');
             $table->timestamps();
         });

@@ -29,14 +29,16 @@ function  userwithdraw(){
 //User withdraw Post
 function withdrawpost(Request $request){
     UserWithdraw::insert([
-     'amount'=>$request->amount,
+     'trx_amount'=>$request->trx_amount,
+     'bdt_amount'=>$request->bdt_amount,
      'pay_number'=>$request->pay_number,
      'pay_method'=>$request->pay_method,
+     'vat_reducation'=>$request->vat_reducation,
+     'payable_amount'=>$request->payable_amount,
+     'date_of_submit'=>$request->date_of_submit,
     ]);
     return back()->with('msg','Successfully Requested');
 }
-
-
   //View User  transaction Page
 function  usertransection(){
     return view('user/dashboard/transaction');
@@ -69,7 +71,4 @@ function userpayment(Request $request){
        ]);
        return back()->with('msg','Successfully Requested');
 }
-
-
-
 }

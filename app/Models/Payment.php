@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
+    Protected $fillable=[];
 
     function relationTouser(){
         return $this->hasOne('App\Models\User','id','user_id');

@@ -14,17 +14,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 ">
-             
+           
                 <form action="{{ url('payment/post') }}" method="post">
                     @csrf
-                        <h1>Make Your Payment</h1>
+                    <div>
+                      @if (session('status'))
+                   <h3>{{ session('status') }}</h3>
+                        
+                      @endif
+                    </div>
+                      <h1>Make Your Payment</h1>
                     <div class="form-group">
-                        
-                        
                         <input type="hidden" class="form-control"  name="user_id">
                       </div>
-
-                      
 
                       <div class="form-group">
                         <label>Package Name</label>
@@ -36,22 +38,40 @@
                         <input type="number" class="form-control"  name="amount"   value="{{ $packege->invest }}">
                       </div>
 
+                      <div class="form-group">
+                        <label>Reciver  Account </label>
+                        <input type="number" class="form-control"  name="reciver_account" placeholder="Enter Reciver Account No">
+                      </div>
+
 
                       <div class="form-group">
-                        <label>Payment Method</label>
-                        <select name="pay_method" id="" class="form-control">
-                            <option value="1">Nagad</option>
+                        <label >Enter Payment Method</label>
+                        <select name="pay_method" id=""  class="form-control">
+                          <option value="0">Choose Your Payment Option</option>
+                          <option value="1">Trust Wallet</option>
                             <option value="2">Bkash</option>
-                            <option value="3">Rocket</option>
+                            <option value="3">Nagad</option>
+                            <option value="4">Rocket</option>
+                            <option value="5">Tab</option>
+                            <option value="6">Upay</option>
+                            <option value="7">Binance</option>
                         </select>
+                      </div>   
+
+                      <div class="form-group">
+                        <label>Transaction ID</label>
+                        <input type="number" class="form-control"  name="transaction_id" placeholder="Enter Transaction ID">
                       </div>
 
                       <div class="form-group">
-                        <label>Payment Number</label>
-                        <input type="number" class="form-control"  name="pay_number" placeholder="Enter Payment Number">
+                        <label>Deposit Screenshot</label>
+                        <input type="file" class="form-control"  name="deposit_screenshot">
                       </div>
 
-                     
+                      <div class="form-group">
+                        <label>Date of Submission</label>
+                        <input type="date" class="form-control"  name="date_of_submission" placeholder="Enter Transaction ID">
+                      </div>
 
                       <div class="form-group">
                      <input type="submit"  class="form-control">

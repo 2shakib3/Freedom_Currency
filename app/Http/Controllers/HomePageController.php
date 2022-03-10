@@ -71,18 +71,44 @@ class HomePageController extends Controller
         return view('font_end.pages.payment',compact('packege'));
     }
     function paymentpost(Request $request){
+
+        // dd($request);
+        if ($request->hasFile('deposit_screenshot')) {
+            $image=$request->file('deposit_screenshot');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/deposit_screenshot/');
+            $imagepath =$image->move($destinationPath, $name);
+            $addfile='/uploads/ads_image/'.$name;   
+            Payment::find($request->deposit_screenshot)->insert([
+                'deposit_screenshot'=> $addfile,
+               ]);
+        }
+        
       Payment::insert([
-        'user_id'=>Auth::id(),
+         'user_id'=>Auth::id(),
         'package_name'=>$request->package_name,
         'amount'=>$request->amount,
         'pay_method'=>$request->pay_method,
-        'pay_number'=>$request->pay_number,
+        'reciver_account'=>$request->reciver_account,
+        'transaction_id'=>$request->transaction_id,
+        'date_of_submission'=>$request->date_of_submission,
         'status'=>2,
-        'created_at'=>Carbon::now(),
      ]);
-     
-        return back();
+
+    // $value = new Payment();
+    // $value->package_name = $request->package_name;
+    // $value->amount = $request->amount;
+    // $value->pay_method = $request->pay_method;
+    // $value->transaction_id = $request->transaction_id;
+    // $value->date_of_submission = $request->date_of_submission;
+    // $value->save();
+
+         return back()->with('status','Paid Successfully');
+        
     }
+    
+
+   
     //End payment page Function
 
      

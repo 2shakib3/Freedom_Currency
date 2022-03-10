@@ -4,7 +4,7 @@
         <div class="dashboard-amount">
           <div class="amount-content">
             <span class="pro-name">Deposite</span>
-            <span class="pro-money">$500</span>
+            <span class="pro-money"></span>
           </div>
           <div class="invest-tumb">
             <i class="flaticon-035-savings"></i>

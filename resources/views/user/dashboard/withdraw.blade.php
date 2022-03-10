@@ -63,30 +63,47 @@ User withdraw
           
         @endif
         <form action="{{ url('withdraw/request') }}"  method="post">
-
           @csrf 
           <div class="form-group">
-            <label for="exampleInputEmail1">Enter Payment Amount</label>
-            <input type="number" class="form-control"  placeholder="Enter Payment Amount"  name="amount">
+            <label for="exampleInputEmail1">Enter withdrawl  Amount</label>
+            <input type="number" class="form-control"  placeholder="Enter withdrawl  Amount"  name="trx_amount">
           </div>
-
           <div class="form-group">
-            <label >Enter Payment Number</label>
-            <input type="number" class="form-control"  placeholder="Enter Payment Number"   name="pay_number">
+            <label>BDT Amount</label>
+            <input type="number" class="form-control"  placeholder="Enter Payment Amount"  name="bdt_amount" readonly>
           </div>
-
+          <div class="form-group">
+            <label >Enter Reciver account no</label>
+            <input type="number" class="form-control"  placeholder="Enter Reciver account no"   name="pay_number">
+          </div>
           <div class="form-group">
             <label >Enter Payment Method</label>
             <select name="pay_method" id=""  class="form-control">
-                <option value="1">Nagad</option>
+              <option value="0">Choose Your Payment Option</option>
+              <option value="1">Trust Wallet</option>
                 <option value="2">Bkash</option>
-                <option value="3">Rocket</option>
+                <option value="3">Nagad</option>
+                <option value="4">Rocket</option>
+                <option value="5">Tab</option>
+                <option value="6">Upay</option>
+                <option value="7">Binance</option>
             </select>
-          </div>    
+          </div>   
+          <div class="form-group">
+            <label >Vat Reducation</label>
+            <input type="number" class="form-control"  placeholder="Vat Reducation"   name="vat_reducation" readonly>
+          </div>
+          <div class="form-group">
+            <label >Payable Amount</label>
+            <input type="number" class="form-control"  placeholder="Enter Payable Amount"   name="payable_amount">
+          </div>
+          <div class="form-group">
+            <label >Date of Submit</label>
+            <input type="date" class="form-control"    name="date_of_submit">
+          </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
-     
     </div>
   </div>
 </div>
@@ -98,8 +115,9 @@ User withdraw
                     <table>
                       <tr>
                         <th>Amount</th>
-                        <th>Pay Number</th>
-                        <th>Pay Method</th>
+                        <th>Reciver Account Number</th>
+                        <th>Payment Method</th>
+                        <th>Vat Reucation</th>
                         <th>Status</th>
                       </tr>
                       <tr>
@@ -116,7 +134,6 @@ User withdraw
                           @endif
                         </td>
                         <td>{{  $draw->status}}</td>
-                       
                         @endforeach
                       </tr>
                     </table>

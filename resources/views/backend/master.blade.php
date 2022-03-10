@@ -16,12 +16,10 @@
     <div id="ebazar-layout" class="theme-blue">
       <!-- sidebar -->
         @include('backend.enclude.sidebar')
-
       <!-- main body area -->
       <div class="main px-lg-4 px-md-4">
         <!-- Body: Header -->
         @include('backend.enclude.header')
-
         <!-- Body: Body -->
         <div class="body d-flex py-3">
           <div class="container-xxl">

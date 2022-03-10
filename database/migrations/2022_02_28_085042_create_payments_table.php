@@ -19,8 +19,10 @@ class CreatePaymentsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('package_name');
             $table->float('amount');
-            $table->string('pay_method');
-            $table->string('pay_number');
+            $table->integer('pay_method');
+            $table->bigInteger('reciver_account');
+            $table->bigInteger('transaction_id');
+            $table->date('date_of_submission');
             $table->integer('status');
             $table->timestamps();
         });
